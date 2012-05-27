@@ -3,26 +3,27 @@
 #include <std_msgs/Float64.h>
 #include <std_msgs/UInt16.h>
 
-#define mult 100
-
 static ros::Publisher pub_voltage;
 static ros::Publisher pub_temp;
+static int multiplier;
 
 static void conv_callback_volt(std_msgs::Float64 param) {
 	std_msgs::UInt16 var;
-	var.data =  static_cast<uint16_t>(param.data * mult);
+	var.data =  static_cast<uint16_t>(param.data * multiplier);
 	pub_voltage.publish(var);
 }
 
 static void conv_callback_temp(std_msgs::Float64 param) {
 	std_msgs::UInt16 var;
-	var.data =  static_cast<uint16_t>(param.data * mult);
+	var.data =  static_cast<uint16_t>(param.data * multiplier);
 	pub_temp.publish(var);
 }
 
 int main(int argc, char **argv) {
-	ros::init(argc, argv, "matrixconversion");
-	ros::NodeHandle node;
+	ros::init(argc, argv, "conversion");
+	ros::NodeHandle node, node_priv("~");
+
+    node_priv.param("multiplier", multiplier, 100);
 	
 	pub_voltage = node.advertise<std_msgs::UInt16>("voltage/integer", 1);
 	pub_temp = node.advertise<std_msgs::UInt16>("temperature/integer", 1);
