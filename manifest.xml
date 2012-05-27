@@ -1,0 +1,16 @@
+<package>
+  <description brief="dot_matrix">
+
+     dot_matrix
+
+  </description>
+  <author>Phantom</author>
+  <license>BSD</license>
+  <review status="unreviewed" notes=""/>
+  <url>http://ros.org/wiki/dot_matrix</url>
+  <depend package="std_msgs"/>
+  <depend package="roscpp"/>
+
+</package>
+
+
