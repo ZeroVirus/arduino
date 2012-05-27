@@ -24,11 +24,11 @@ int main(int argc, char **argv) {
 	ros::init(argc, argv, "matrixconversion");
 	ros::NodeHandle node;
 	
-	pub_voltage = node.advertise<std_msgs::UInt16>("voltage/int",1);
-	pub_temp = node.advertise<std_msgs::UInt16>("temp/int",1);
+	pub_voltage = node.advertise<std_msgs::UInt16>("voltage/integer", 1);
+	pub_temp = node.advertise<std_msgs::UInt16>("temperature/integer", 1);
 	
-	ros::Subscriber left_temp = node.subscribe("temperature/left",1,&conv_callback_temp);
-	ros::Subscriber left_voltage = node.subscribe("voltage/left",1,&conv_callback_volt);
+	ros::Subscriber left_temp = node.subscribe("temperature/left", 1, &conv_callback_temp);
+	ros::Subscriber left_voltage = node.subscribe("voltage/left", 1, &conv_callback_volt);
 	
 	ros::spin();
 	return 0;
