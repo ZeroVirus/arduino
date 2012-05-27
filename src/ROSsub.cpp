@@ -5,16 +5,16 @@
 
 #define mult 100
 
-ros::Publisher pub_voltage;
-ros::Publisher pub_temp;
+static ros::Publisher pub_voltage;
+static ros::Publisher pub_temp;
 
-void conv_callback_volt(std_msgs::Float64 param) {
+static void conv_callback_volt(std_msgs::Float64 param) {
 	std_msgs::UInt16 var;
 	var.data =  static_cast<uint16_t>(param.data * mult);
 	pub_voltage.publish(var);
 }
 
-void conv_callback_temp(std_msgs::Float64 param) {
+static void conv_callback_temp(std_msgs::Float64 param) {
 	std_msgs::UInt16 var;
 	var.data =  static_cast<uint16_t>(param.data * mult);
 	pub_temp.publish(var);
